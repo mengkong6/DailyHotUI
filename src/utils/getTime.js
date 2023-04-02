@@ -1,6 +1,9 @@
 import LunarCalendar from "lunar-calendar";
 
 export const formatTime = (timestamp) => {
+  if((timestamp + "").length === 10){
+    timestamp = timestamp * 1000
+  }
   const date = new Date(timestamp);
   const now = new Date();
   const diffInSeconds = (now.getTime() - date.getTime()) / 1000;
