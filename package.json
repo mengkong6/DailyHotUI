@@ -3,6 +3,8 @@
   "description": "今日热榜",
   "author": "mengkong6",
   "github": "https://github.com/mengkong6",
+  "qqtext": "加入频道",
+  "qqchannel":"https://pd.qq.com/s/axsvtxlg1",
   "version": "2.0",
   "private": true,
   "scripts": {

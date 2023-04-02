@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="copyright">
-      <n-text class="description" v-html="packageJson.description" />
+      <n-text class="description" v-html="packageJson.qqtext" @click="jumpLink(packageJson.qqchannel)" />
       <n-text
         class="author"
         :depth="3"
@@ -43,6 +43,7 @@ footer {
   .copyright {
     margin-bottom: 4px;
     .description {
+      cursor: pointer;
       &::after {
         content: "@ Copyright By";
         margin: 0 6px;
