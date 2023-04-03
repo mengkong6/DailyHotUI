@@ -41,7 +41,7 @@ export const mainStore = defineStore("main", {
           label: "少数派",
           value: "sspai",
           order: 5,
-          show: false,
+          show: true,
         },
         {
           label: "IT之家",
@@ -53,7 +53,7 @@ export const mainStore = defineStore("main", {
           label: "澎湃新闻",
           value: "thepaper",
           order: 7,
-          show: false,
+          show: true,
         },
         {
           label: "今日头条",
@@ -65,7 +65,7 @@ export const mainStore = defineStore("main", {
           label: "百度贴吧",
           value: "tieba",
           order: 9,
-          show: false,
+          show: true,
         },
         {
           label: "稀土掘金",
@@ -77,7 +77,7 @@ export const mainStore = defineStore("main", {
           label: "腾讯新闻",
           value: "tencent",
           order: 11,
-          show: false,
+          show: true,
         },
         {
           label: "抖音",
@@ -89,13 +89,13 @@ export const mainStore = defineStore("main", {
           label: "搜狗新闻",
           value: "sougou",
           order: 13,
-          show: false,
+          show: true,
         },
         {
           label: "历史今日",
           value: "history",
           order: 14,
-          show: false,
+          show: true,
         },
         {
           label: "哔哩哔哩日榜",
@@ -107,25 +107,25 @@ export const mainStore = defineStore("main", {
           label: "掘金前端",
           value: "juejinqian",
           order: 16,
-          show: false,
+          show: true,
         },
         {
           label: "掘金后端",
           value: "juejinhou",
           order: 17,
-          show: false,
+          show: true,
         },
         {
           label: "掘金代码人生",
           value: "juejinlife",
           order: 18,
-          show: false,
+          show: true,
         },
         {
           label: "36氪",
           value: "36kr",
           order: 19,
-          show: false,
+          show: true,
         },
       ],
       // 链接跳转方式
