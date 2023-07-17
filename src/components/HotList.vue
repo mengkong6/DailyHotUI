@@ -38,22 +38,8 @@
         </template>
         <template v-else>
           <div class="lists" :id="hotType + 'Lists'">
-            <div
-              class="item"
-              v-for="(item, index) in hotListData.data.slice(0, 15)"
-              :key="item"
-            >
-              <n-text
-                class="num"
-                :class="
-                  index === 0
-                    ? 'one'
-                    : index === 1
-                    ? 'two'
-                    : index === 2
-                    ? 'three'
-                    : null
-                "
+            <div class="item" v-for="(item, index) in hotListData.data.slice(0, 15)" :key="item">
+              <n-text class="num" :class=" index === 0 ? 'one' : index === 1 ? 'two' : index === 2 ? 'three' : null "
                 :depth="2"
                 >{{ index + 1 }}</n-text
               >
