@@ -144,7 +144,6 @@ const listData = ref(null);
 const getHotListsData = (type, isNew = false) => {
   listData.value = null;
   getHotLists(type, isNew).then((res) => {
-    console.log(res);
     if (res.code === 200) {
       listData.value = res;
     } else {
