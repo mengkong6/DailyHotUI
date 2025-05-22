@@ -1,100 +1,111 @@
 <template>
-  <div class="setting">
-    <div class="title">全局设置</div>
-    <n-h6 prefix="bar"> 基础设置 </n-h6>
-    <n-card class="set-item">
-      <div class="top">
-        <div class="name">
-          <n-text class="text">链接跳转方式</n-text>
-          <n-text class="tip" :depth="3"> 选择榜单列表内容的跳转方式 </n-text>
-        </div>
-        <n-select
-          class="set"
-          v-model:value="linkOpenType"
-          :options="linkOptions"
-        />
+  <n-page-header @back="handleBack">
+    <template #back>
+      <div style="display: flex; align-items: center">
+        <n-icon :component="Return" :size="32" />
+        <h2 style="margin-left: 10px;">全局设置</h2>
       </div>
-    </n-card>
-    <n-card class="set-item">
-      <div class="top">
-        <div class="name">
-          <n-text class="text">固定导航栏</n-text>
-          <n-text class="tip" :depth="3"> 导航栏是否固定 </n-text>
+    </template>
+
+    <div class="setting">
+      <n-h6 prefix="bar"> 基础设置 </n-h6>
+      <n-card class="set-item">
+        <div class="top">
+          <div class="name">
+            <n-text class="text">链接跳转方式</n-text>
+            <n-text class="tip" :depth="3"> 选择榜单列表内容的跳转方式 </n-text>
+          </div>
+          <n-select
+            class="set"
+            v-model:value="linkOpenType"
+            :options="linkOptions"
+          />
         </div>
-        <n-switch v-model:value="headerFixed" :round="false" />
-      </div>
-    </n-card>
-    <n-card class="set-item">
-      <div class="top">
-        <div class="name">
-          <n-text class="text">榜单排序</n-text>
-          <n-text class="tip" :depth="3">
-            拖拽以排序，开关用以控制在页面中的显示状态
-          </n-text>
+      </n-card>
+      <n-card class="set-item">
+        <div class="top">
+          <div class="name">
+            <n-text class="text">固定导航栏</n-text>
+            <n-text class="tip" :depth="3"> 导航栏是否固定 </n-text>
+          </div>
+          <n-switch v-model:value="headerFixed" :round="false" />
         </div>
-        <n-popconfirm @positive-click="restoreDefault">
-          <template #trigger>
-            <n-button class="control" size="small"> 恢复默认 </n-button>
-          </template>
-          确认将排序恢复到默认状态？
-        </n-popconfirm>
-      </div>
-      <draggable
-        :list="newsArr"
-        :animation="200"
-        class="mews-group"
-        item-key="order"
-        @end="saveSoreData()"
-      >
-        <template #item="{ element }">
-          <n-card
-            class="item"
-            embedded
-            :content-style="{ display: 'flex', alignItems: 'center' }"
-          >
-            <div class="desc" :style="{ opacity: element.show ? null : 0.6 }">
-              <img
-                class="logo"
-                :src="`/logo/${element.value}.png`"
-                alt="logo"
+      </n-card>
+      <n-card class="set-item">
+        <div class="top">
+          <div class="name">
+            <n-text class="text">榜单排序</n-text>
+            <n-text class="tip" :depth="3">
+              拖拽以排序，开关用以控制在页面中的显示状态
+            </n-text>
+          </div>
+          <n-popconfirm @positive-click="restoreDefault">
+            <template #trigger>
+              <n-button class="control" size="small"> 恢复默认 </n-button>
+            </template>
+            确认将排序恢复到默认状态？
+          </n-popconfirm>
+        </div>
+        <draggable
+          :list="newsArr"
+          :animation="200"
+          class="mews-group"
+          item-key="order"
+          @end="saveSoreData()"
+        >
+          <template #item="{ element }">
+            <n-card
+              class="item"
+              embedded
+              :content-style="{ display: 'flex', alignItems: 'center' }"
+            >
+              <div class="desc" :style="{ opacity: element.show ? null : 0.6 }">
+                <img
+                  class="logo"
+                  :src="`/logo/${element.value}.png`"
+                  alt="logo"
+                />
+                <n-text class="news-name" v-html="element.label" />
+              </div>
+              <n-switch
+                class="switch"
+                :round="false"
+                v-model:value="element.show"
+                @update:value="saveSoreData(element.label, element.show)"
               />
-              <n-text class="news-name" v-html="element.label" />
-            </div>
-            <n-switch
-              class="switch"
-              :round="false"
-              v-model:value="element.show"
-              @update:value="saveSoreData(element.label, element.show)"
-            />
-          </n-card>
-        </template>
-      </draggable>
-    </n-card>
-    <n-h6 prefix="bar"> 杂项设置 </n-h6>
-    <n-card class="set-item">
-      <div class="top">
-        <div class="name">
-          <n-text class="text">重置所有数据</n-text>
-          <n-text class="tip" :depth="3">
-            重置所有数据，你的自定义设置都将会丢失
-          </n-text>
-        </div>
-        <n-popconfirm @positive-click="reset">
-          <template #trigger>
-            <n-button type="warning"> 重置 </n-button>
+            </n-card>
           </template>
-          确认重置所有数据？你的自定义设置都将会丢失！
-        </n-popconfirm>
-      </div>
-    </n-card>
-  </div>
+        </draggable>
+      </n-card>
+      <n-h6 prefix="bar"> 杂项设置 </n-h6>
+      <n-card class="set-item">
+        <div class="top">
+          <div class="name">
+            <n-text class="text">重置所有数据</n-text>
+            <n-text class="tip" :depth="3">
+              重置所有数据，你的自定义设置都将会丢失
+            </n-text>
+          </div>
+          <n-popconfirm @positive-click="reset">
+            <template #trigger>
+              <n-button type="warning"> 重置 </n-button>
+            </template>
+            确认重置所有数据？你的自定义设置都将会丢失！
+          </n-popconfirm>
+        </div>
+      </n-card>
+    </div>
+  </n-page-header>
 </template>
 
 <script setup>
 import { storeToRefs } from "pinia";
 import { mainStore } from "@/store";
 import draggable from "vuedraggable";
+import { useRouter } from "vue-router";
+import { Return } from "@icon-park/vue-next";
 
+const router = useRouter();
 const store = mainStore();
 const { newsArr, linkOpenType, headerFixed } = storeToRefs(store);
 
@@ -109,6 +120,10 @@ const linkOptions = [
     value: "href",
   },
 ];
+
+const handleBack = () => {
+  router.back();
+};
 
 // 恢复默认排序
 const restoreDefault = () => {
@@ -134,7 +149,7 @@ const reset = () => {
 <style lang="scss" scoped>
 .setting {
   .title {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-size: 40px;
     font-weight: bold;
