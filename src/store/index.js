@@ -20,8 +20,8 @@ export const mainStore = defineStore("main", {
           show: true,
         },
         {
-          label: "知乎",
-          value: "zhihu",
+          label: "36氪",
+          value: "36kr",
           order: 2,
           show: true,
         },
@@ -119,12 +119,6 @@ export const mainStore = defineStore("main", {
           label: "掘金代码人生",
           value: "juejinlife",
           order: 18,
-          show: true,
-        },
-        {
-          label: "36氪",
-          value: "36kr",
-          order: 19,
           show: true,
         },
       ],
